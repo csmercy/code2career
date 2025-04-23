@@ -1,0 +1,18 @@
+1. Write a function that converts any positive integer to a Roman number. 
+  1 = I
+  5 = V
+  10 = X
+  50 = L
+  100 = C
+  500 = D
+  1000 = M
+
+2. Write a function that determines if a string is a palindrome ( can be read the same way in either direction ) 
+
+
+3. Given a string s, reverse only all the vowels in the string and return it.
+The vowels are 'a', 'e', 'i', 'o', and 'u', and they can appear in both lower and upper cases, more than once.
+
+
+4. You are given two strings word1 and word2. Merge the strings by adding letters in alternating order, starting with word1. If a string is longer than the other, append the additional letters onto the end of the merged string.
+  Return the merged string
