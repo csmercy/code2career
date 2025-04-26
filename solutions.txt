@@ -1,0 +1,319 @@
+/*
+1. Write a function that converts any positive integer to a Roman number.
+  1 = I
+  5 = V
+  10 = X
+  50 = L
+  100 = C
+  500 = D
+  1000 = M
+
+999 -> CMXCIX
+
+IV, IX, XL, XC, CD, CM
+4, 9, 40, 90, 400, 900
+
+  2001 -> MMI
+  2500  -> MMD
+
+  logic for the number 2500
+  first step: find how many 1000 in 2500 -> two --> 2 'M's
+
+  second step: 2500 - 2000 = 500 -> D
+
+  third step: there is no remainder
+
+  the result  is 2 'M's + 1 'D' -> MMD
+
+  2505  -> MMD
+
+  logic for the number 2500
+  first step: find how many 1000 in 2500 -> two --> 2 'M's
+
+  second step: 2505 - 2000 = 505 -> 1 'D'
+
+  third step: 505 - 500 = 5 -> V
+
+  the result  is 2 'M's + 1 'D' + 1 'V' -> MMDV
+
+4 -> IIII
+7 -> VII
+8 -> VIII
+9 -> IX
+11 -> XI
+41 -> XLI
+30 -> XXX
+90 -> XC
+
+1000
+500
+400
+100
+50
+40
+10
+9
+5
+4
+1
+
+49 -> XLIX
+
+1000 -1 -> IM
+1000 - 5 -> VM
+1000 - 10 -> XM
+1000 - 50 ->
+
+
+
+ */
+
+
+
+
+public class Practice {
+
+    public static String intToRoman(int n) {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        stringBuilder.append("M".repeat(n / 1000));
+        n = n % 1000;
+        stringBuilder.append("CM".repeat(n / 900));
+        n = n % 900;
+        stringBuilder.append("D".repeat(n / 500));
+        n = n % 500;
+        stringBuilder.append("CD".repeat(n / 400));
+        n = n % 400;
+        stringBuilder.append("C".repeat(n / 100));
+        n = n % 100;
+        stringBuilder.append("XC".repeat(n / 90));
+        n = n % 90;
+        stringBuilder.append("L".repeat(n / 50));
+        n = n % 50;
+        stringBuilder.append("XL".repeat(n / 40));
+        n = n % 40;
+        stringBuilder.append("X".repeat(n / 10));
+        n = n % 10;
+        stringBuilder.append("IX".repeat(n / 9));
+        n = n % 9;
+        stringBuilder.append("V".repeat(n / 5));
+        n = n % 5;
+        stringBuilder.append("IV".repeat(n / 4));
+        n = n % 4;
+        stringBuilder.append("I".repeat(n));
+        return stringBuilder.toString();
+
+
+    }
+
+    public static String intToRoman_v2(int n) {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        int[] numbers = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+        String[] romanNumerals = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+
+        for( int i = 0; i < numbers.length; i++ ){
+            stringBuilder.append(romanNumerals[i].repeat(n / numbers[i]));
+            n = n % numbers[i];
+        }
+
+        return stringBuilder.toString();
+
+    }
+
+
+
+    /*
+        'mom', 'aba', 'abba'
+     */
+
+    public static boolean isPalindrome(String s){
+        char[] chars = s.toCharArray();
+        int i = 0, j = chars.length-1;
+        while( i < j){
+            if( chars[i] != chars[j] )
+                return false;
+            i++;
+            j--;
+        }
+        return true;
+
+
+    }
+
+    /*
+    Junit is frame work for unit testing
+    AssertTrue
+    AssertEqual
+
+     */
+    public static void main(String[] args){
+        System.out.println("The Roman numeral is " + intToRoman(999));
+        System.out.println("The Roman numeral is " + intToRoman(1042));
+        System.out.println("The Roman numeral is " + intToRoman(41));
+        System.out.println("The Roman numeral is " + intToRoman(2041));
+
+        for( int i = 1; i < 50000; i++){
+            String romanNumeral = intToRoman(i);
+            String romanNumeral2 = intToRoman(i);
+
+            if( !romanNumeral.equals(romanNumeral2)){
+                System.out.println("when i = " + i + " romanNumeral is " + romanNumeral + " but romanNumeral2 is " + romanNumeral2);
+            }
+
+        }
+
+        System.out.println("Two functions return same result for all numbers less than 50000.");
+
+
+//        System.out.println(isPalindrome("mom"));
+//        System.out.println(isPalindrome(""));
+//        System.out.println(isPalindrome("ABBA"));
+//        System.out.println(isPalindrome("student"));
+
+//        System.out.println(reverseVowels("student"));
+//        System.out.println(reverseVowels("studenta"));
+//        System.out.println(reverseVowels("istudent"));
+//        System.out.println(reverseVowels("Astudent"));
+//        System.out.println(reverseVowels_version2("student"));
+//        System.out.println(reverseVowels_version2("studenta"));
+//        System.out.println(reverseVowels_version2("istudent"));
+//        System.out.println(reverseVowels_version2("Astudent"));
+
+//        System.out.println(mergedStrings("abc", "ABCDEF"));
+//
+//        System.out.println(mergedStrings( "ABCDEF", "abc"));
+
+    }
+
+    /*
+    3. Given a string s, reverse only all the vowels in the string and return it.
+The vowels are 'a', 'e', 'i', 'o', and 'u', and they can appear in both lower and upper cases, more than once.
+
+    'A', 'E', 'I', 'O', 'U'
+
+        'aeiouAEIOU'
+     */
+    public static String reverseVowels(String s) {
+        char[] chars = s.toCharArray();
+
+        int i = 0, j = s.length() - 1;
+
+        while (i < j) {
+
+            if (!isVowel(chars[i]))
+                i++;
+            if (!isVowel(chars[j]))
+                j--;
+
+            //swap
+
+
+
+            if (isVowel(chars[i]) && isVowel(chars[j])) {
+                char ch = chars[i];
+                chars[i] = chars[j];
+                chars[j] = ch;
+                i++;
+                j--;
+            }
+
+        }
+        return new String(chars);
+    }
+
+    public static String reverseVowels_version2(String s){
+        char[] chars = s.toCharArray();
+
+        int i = 0, j = s.length() - 1;
+
+        while (i < j) {
+
+            while (!isVowel(chars[i]))
+                i++;
+            while (!isVowel(chars[j]))
+                j--;
+
+            //swap values
+            char ch = chars[i];
+            chars[i] = chars[j];
+            chars[j] = ch;
+            i++;
+            j--;
+
+        }
+        return new String(chars);
+    }
+
+
+    private static boolean isVowel(char c){
+        if ( c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' ||
+            c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U')
+            return true;
+        return false;
+    }
+
+    /*
+    4. You are given two strings word1 and word2. Merge the strings by adding letters in alternating order, starting with word1.
+    If a string is longer than the other, append the additional letters onto the end of the merged string.
+  Return the merged string
+
+    "abc" merge "ABCDEF" -> "aAbBcCDEF"
+     */
+
+    public static String mergedStrings(String word1, String word2){
+        char[] word1Array = word1.toCharArray();
+        char[] word2Array = word2.toCharArray();
+
+//        char[] merged = new char[word1.length() + word2.length()];
+        StringBuilder sb = new StringBuilder();
+
+//        int length = word1Array.length < word2Array.length? word1Array.length: word2Array.length;
+
+        int i = 0;
+        while ( i < word1Array.length && i < word2Array.length ){
+
+//        }
+//        for ( int i = 0; (i < word1Array.length) && (i < word2Array.length); i++ ){
+            sb.append(word1Array[i]);
+            sb.append(word2Array[i]);
+            i++;
+        }
+
+        if ( word1Array.length > i){
+            sb.append(word1.substring(i));
+        }
+        if ( word2Array.length > i){
+            sb.append(word2.substring( i ));
+        }
+        return sb.toString();
+
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
