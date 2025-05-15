@@ -6,6 +6,9 @@
 3. Given an array of sorted integers, find two numbers such that they add up to a specific target number, return indices of the two numbers.
     public int[] twoSum( int[] sortedNumbers, int target ) { }
 
+4. Given two sorted integer arrays A and B, merge B into A as one sorted array. Assume A has enought space to hold additional elements from B, m and n are the number of elements initialized in A and B respectively.  
+    public void merge( int[] A, int m, int[] B, int n ) 
+
 4. Given an array of n positive integers and a positive integers, find the minimal length of a subarray of which the sum >= s, if there isn't one, return 0 instead.
     public int minSbuArrayLenth( int s, int[] nums ) { } 
 
