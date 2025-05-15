@@ -1,0 +1,12 @@
+1. How does hash table work? 
+
+2. Given an array of integers, find two numbers such that they add up to a specific target number, return indices of the two numbers. 
+    public int[] twoSum( int[] numbers, int target ) { }
+
+3. Given an array of sorted integers, find two numbers such that they add up to a specific target number, return indices of the two numbers.
+    public int[] twoSum( int[] sortedNumbers, int target ) { }
+
+4. Given an array of n positive integers and a positive integers, find the minimal length of a subarray of which the sum >= s, if there isn't one, return 0 instead.
+    public int minSbuArrayLenth( int s, int[] nums ) { } 
+
+5. Introduction to Monte Carlo Simulation. 
